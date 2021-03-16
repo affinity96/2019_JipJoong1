@@ -15,9 +15,11 @@
 ### 데이터 전처리
 #### 이미지 리사이즈
  수집한 데이터의 크기가 제 각각이었기 때문에, 우리는 이미지의 크기를 가로 128픽셀, 세로 128픽셀로 똑같이 resize하였다. 다음은 이미지를 resize 하는 코드이다.
+ 
 ![그림2](https://user-images.githubusercontent.com/53653160/111269678-43fd4e80-8672-11eb-9b8f-60de161ffa0f.png)
 
  우리는 이미지의 크기를 보다 더 크게 resize한다면, 보다 높은 accuracy를 얻을 수 있을 것이라 기대하였으며, 이후 학습에서는 가로 224픽셀, 세로 224픽셀로 resize한 뒤 진행하였다.
+ 
 ![그림3](https://user-images.githubusercontent.com/53653160/111269681-4495e500-8672-11eb-80b7-14396acc8c57.png)
 
 #### Numpy array 변환
@@ -35,11 +37,13 @@
 ![그림5](https://user-images.githubusercontent.com/53653160/111269685-452e7b80-8672-11eb-8ace-178bceb2b059.png)
 
  아래의 함수는 Data augmentation 함수로 기존의 training set image을 변형하여 추가적인 데이터를 추가하여 모델의 정확도를 높이기 위해 수행한다. 기존의 이미지를 30도 기울이거나, 0.2배 만큼 움직이게 하고, 이미지를 반전시키는 등의 augmentation을 거침으로써 정확도를 올리고자 하였다.
+ 
 ![그림6](https://user-images.githubusercontent.com/53653160/111269688-45c71200-8672-11eb-95da-5ab935d2e2cd.png)
 
  Overfitting을 방지하기 위해 학습 중 20 epoch동안 더 이상 정확도의 발전 이 없다면 설정한 200 epoch만큼 학습을 하지 않아도 먼저 끝내도록 하였다. 또한 checkpoint call back 함수를 이용해서 지정한 지점에서 학습을 재개하거나 완료된 모델을 불러와 사용할 수 있도록 설정하였다. Adam optimizer와 위의 checkpoint, early stopping 콜백함수를 이용하였는데 checkpoint를 이용하여 validation data에 대한 정확도가 갱신될 때마다 모델을 저장하였고, early stopping을 이용하여 과대적합을 방지하였다. 또한 ReduceLRonPlateau를 이용하여 validation accuracy가 epoch진행시 개선이 없을 경우 learning rate를 0.5배씩 줄이는 기법을 진행하여 학습효율을 증대하였다. 무작위로 선정된 validation data를 사용하여 검증 후 테스트 데이터에 대한 정확도를 출력하게 하였다.
 
 #### 타 모델과의 비교 결과
+
 ![그림9](https://user-images.githubusercontent.com/53653160/111269692-465fa880-8672-11eb-84ee-742476a2813a.png)
 
 30종의 sample 이미지 데이터셋에서 우리가 고안한 Simple CNN 모델이 다른 모델에 비해 좋은 accuracy를 나타냄을 확인하였고, 150종의 요리사진 데이터셋으로부터 100, 200, 300, 500개씩의 사진파일이 들어 있는 데이터셋 과 128*128, 224*224 pixel사이즈로 resizing한 데이터 셋에 대해서 최적의 모델을 비교하였고 다음과 같이 300개씩의 사진파일을 사용하고, 128X128 pixel사이즈로 resizing하였을때 성능의 최적 모델을 생성할 수 있었다. 아래와 같이 최적 모델은 79번째 epoch에서 early stopping에 의해 조기 종료되었고 최고 성능은 57.967%의 validation accuracy를. test accuracy는 57.027% test loss는 2.078(categorical cross entropy loss function)의 성능을 출력하였다. 이때 model checkpoint를 이용하여 저장한 최고 validation accuracy 성능을 보인 모델을 이용하여 서비스를 구현하였다.
