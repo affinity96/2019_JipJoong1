@@ -26,9 +26,9 @@
  우리가 가지고 있는 컴퓨터 자원으로는 10,000장에 달하는 이미지를 학습하는데 무리가 있다고 판단하여, 모델 학습은 구글 Colab을 활용하여 진행하였다. 이때, 이미지 전체를 드라이브에 올리면 용량 문제가 발생하므로, 이미지를 numpy array로 변환하여 구글 드라이브에 올리기로 하였다. 초기 제공받은 9천여장의 음식 사진으로 모델 선정을 하기로 하고 추후에 수집한 15만여 장의 데이터로 모델과 분류 량을 더 늘여 나가고자 하였다.
  추후 제공 받은 15만여장의 데이터는 150 종의 음식 종류마다 천 여장씩 사진이 존재했는데, 이 사진들을 모두 가로 세로 128 크기로 resize 하여도 여전히 방대한 크기였기에, 하나의 음식에 몇 장의 이미지 데이터가 있을 때 성능이 최적인지 비교하기로 하였다. 이를 위해 한 종류의 음식당 각 100, 200, 00, 500장의 사진을 이용한 데이터 셋을 각각 만들어 모델 학습에 사용하였다.
 
-### 모델 형성 및 비교
+## 모델 형성 및 비교
 
-#### Simple CNN 모델 구성
+### Simple CNN 모델 구성
 
 ![그림4](https://user-images.githubusercontent.com/53653160/111269682-452e7b80-8672-11eb-992b-6192b4d44433.png)
 
@@ -42,7 +42,7 @@
 
  Overfitting을 방지하기 위해 학습 중 20 epoch동안 더 이상 정확도의 발전 이 없다면 설정한 200 epoch만큼 학습을 하지 않아도 먼저 끝내도록 하였다. 또한 checkpoint call back 함수를 이용해서 지정한 지점에서 학습을 재개하거나 완료된 모델을 불러와 사용할 수 있도록 설정하였다. Adam optimizer와 위의 checkpoint, early stopping 콜백함수를 이용하였는데 checkpoint를 이용하여 validation data에 대한 정확도가 갱신될 때마다 모델을 저장하였고, early stopping을 이용하여 과대적합을 방지하였다. 또한 ReduceLRonPlateau를 이용하여 validation accuracy가 epoch진행시 개선이 없을 경우 learning rate를 0.5배씩 줄이는 기법을 진행하여 학습효율을 증대하였다. 무작위로 선정된 validation data를 사용하여 검증 후 테스트 데이터에 대한 정확도를 출력하게 하였다.
 
-#### 타 모델과의 비교 결과
+### 타 모델과의 비교 결과
 
 ![그림9](https://user-images.githubusercontent.com/53653160/111269692-465fa880-8672-11eb-84ee-742476a2813a.png)
 
@@ -50,17 +50,20 @@
 
 ![그림10](https://user-images.githubusercontent.com/53653160/111269693-465fa880-8672-11eb-99b1-62ff44f653d2.png)
 
-### 웹 페이지 화면
+## 웹 페이지 화면
 
-#### 초기 웹페이지
+### 초기 웹페이지
 ![그림11](https://user-images.githubusercontent.com/53653160/111269697-46f83f00-8672-11eb-80f8-1d7fba40cac5.png)
 
-#### 단일 음식 출력
+### 단일 음식 출력
 ![그림12](https://user-images.githubusercontent.com/53653160/111269701-46f83f00-8672-11eb-9e0a-7002047e5659.png)
 
-#### 다중 음식 출력
+### 다중 음식 출력
 ![그림13](https://user-images.githubusercontent.com/53653160/111269703-4790d580-8672-11eb-961d-d38b90ee4e92.png)
 
-#### 운동량 추천
+### 운동량 추천
 ![그림14](https://user-images.githubusercontent.com/53653160/111269704-48296c00-8672-11eb-855b-f48a5e52ae44.png)
+
+## 논문등록
+
 
