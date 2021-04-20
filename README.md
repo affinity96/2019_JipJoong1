@@ -64,12 +64,4 @@
 ### 운동량 추천
 ![그림14](https://user-images.githubusercontent.com/53653160/111269704-48296c00-8672-11eb-855b-f48a5e52ae44.png)
 
-## 논문등록
 
-### 2019 정보과학회 논문
-![10조논문 docx (10)-1](https://user-images.githubusercontent.com/53653160/111271418-7f991800-8674-11eb-8547-86fec50e34b3.jpg)
-![10조논문 docx (10)-2](https://user-images.githubusercontent.com/53653160/111271421-80ca4500-8674-11eb-92c0-0a0ca900e89a.jpg)
-![10조논문 docx (10)-3](https://user-images.githubusercontent.com/53653160/111271422-8162db80-8674-11eb-8633-4ff9c4c8c2f8.jpg)
-
-### 2019 정보과학회 발표 포스터
-![정보과학회포스터-1](https://user-images.githubusercontent.com/53653160/111271435-845dcc00-8674-11eb-86ee-6f9f918f645e.jpg)
